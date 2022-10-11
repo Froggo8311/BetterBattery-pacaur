@@ -7,7 +7,7 @@ if [ $EUID -ne 0 ]
 fi
 
 
-sudo pacman -Syu dialog
+pacaur -Syu dialog --needed
 dialog --title 'Hello,' --msgbox 'This script will (hopefully) make the battery life on your laptop better' 20 50
 dialog --title 'WARNING!' --msgbox 'MAKE SURE YOU USE ARCH LINUX AND HAVE PACAUR FOR THIS!' 20 50
 dialog --msgbox 'This script will automatically set up your laptop to have a much higher battery life than before.' 20 50
@@ -16,7 +16,7 @@ dialog --msgbox 'First we are going to install some needed programs.' 20 50
 sleep 1s
 dialog --msgbox  'TLP is a very popular battery life tool which makes optimization simple' 20 50
 sleep 1s
-pacman -Sy tlp -y
+pacaur -Sy tlp -y --needed
 sleep 1s
 systemctl mask systemd-rfkill.service
 systemctl mask systemd-rfkill.socket
@@ -36,7 +36,7 @@ dialog --msgbox 'Now its time to configure auto-cpufreq.' 20 50
 dialog --msgbox 'Auto-cpufreq is a tool which governs, and configures your CPU to only use the ammount of power it actually needs on battery life.' 20 50
 dialog --msgbox 'This will compile the program so it may take a while' 20 50
 clear
-runuser -l $USER -c 'pacaur -S auto-cpufreq'
+runuser -l $USER -c 'pacaur -S auto-cpufreq --needed'
 sleep 1s
 systemctl enable auto-cpufreq
 systemctl start autocpufreq
