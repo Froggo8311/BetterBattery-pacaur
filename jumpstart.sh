@@ -9,7 +9,7 @@ fi
 
 sudo pacman -Syu dialog
 dialog --title 'Hello,' --msgbox 'This script will (hopefully) make the battery life on your laptop better' 20 50
-dialog --title 'WARNING!' --msgbox 'MAKE SURE YOU USE ARCH LINUX AND HAVE YAY FOR THIS!' 20 50
+dialog --title 'WARNING!' --msgbox 'MAKE SURE YOU USE ARCH LINUX AND HAVE PACAUR (ALIASED AS PACMAN) FOR THIS!' 20 50
 dialog --msgbox 'This script will automatically set up your laptop to have a much higher battery life than before.' 20 50
 clear
 dialog --msgbox 'First we are going to install some needed programs.' 20 50
@@ -36,7 +36,7 @@ dialog --msgbox 'Now its time to configure auto-cpufreq.' 20 50
 dialog --msgbox 'Auto-cpufreq is a tool which governs, and configures your CPU to only use the ammount of power it actually needs on battery life.' 20 50
 dialog --msgbox 'This will compile the program so it may take a while' 20 50
 clear
-runuser -l $USER -c 'yay -Sy auto-cpufreq'
+runuser -l $USER -c 'pacman -Sy auto-cpufreq'
 sleep 1s
 systemctl enable auto-cpufreq
 systemctl start autocpufreq
