@@ -35,10 +35,9 @@ dialog --msgbox 'Auto-cpufreq is a tool which governs, and configures your CPU t
 dialog --msgbox 'This will compile the program so it may take a while' 20 50
 clear
 pacaur -S auto-cpufreq --needed
+sleep 2s
+sudo systemctl enable --now auto-cpufreq
 sleep 1s
-sudo systemctl enable auto-cpufreq
-sudo systemctl start autocpufreq
-sleep 4s
 clear
 dialog --msgbox 'Renaming old auto-cpufreq config. This may return an error if there are no previous configurations.' 20 50
 sudo mv /etc/auto-cpufreq.conf /etc/auto-cpufreq.conf.old
