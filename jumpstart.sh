@@ -6,10 +6,10 @@
 # 		exit 1
 # fi
 
-
+echo "Installing dialog..."
 pacaur -Syu dialog --needed
-dialog --title 'Hello,' --msgbox 'This script will (hopefully) make the battery life on your laptop better' 20 50
-dialog --title 'WARNING!' --msgbox 'MAKE SURE YOU USE ARCH LINUX AND HAVE PACAUR FOR THIS!' 20 50
+dialog --title 'Hello,' --msgbox 'This script is intended to increase the battery life of a linux computer.' 20 50
+dialog --title 'WARNING!' --msgbox 'Ensure you are running Arch Linux with pacaur installed.' 20 50
 dialog --msgbox 'This script will automatically set up your laptop to have a much higher battery life than before.' 20 50
 clear
 dialog --msgbox 'First we are going to install some needed programs.' 20 50
@@ -18,17 +18,17 @@ dialog --msgbox  'TLP is a very popular battery life tool which makes optimizati
 sleep 1s
 pacaur -Sy tlp -y --needed
 sleep 1s
-systemctl mask systemd-rfkill.service
-systemctl mask systemd-rfkill.socket
-systemctl enable tlp.service
+sudo systemctl mask systemd-rfkill.service
+sudo systemctl mask systemd-rfkill.socket
+sudo systemctl enable tlp.service
 sleep 1s
-systemctl start tlp.service
+sudo systemctl start tlp.service
 sleep 1s
 clear
-dialog --msgbox 'Now we are going to be automatically setting up the configs, dont worry, this will back up your current config' 20 50
+dialog --msgbox 'This will now automatically set up configurations...' 20 50
 clear
-mv /etc/tlp.conf /etc/tlp.conf.old
-mv configs/tlp.conf /etc/tlp.conf
+sudo mv /etc/tlp.conf /etc/tlp.conf.old
+sudo mv configs/tlp.conf /etc/tlp.conf
 clear
 dialog --msgbox 'TLP has been successfully configured!' 20 50
 clear
@@ -38,28 +38,28 @@ dialog --msgbox 'This will compile the program so it may take a while' 20 50
 clear
 runuser -l $USER -c 'pacaur -S auto-cpufreq --needed'
 sleep 1s
-systemctl enable auto-cpufreq
-systemctl start autocpufreq
+sudo systemctl enable auto-cpufreq
+sudo systemctl start autocpufreq
 sleep 4s
 clear
-dialog --msgbox 'Renaming old auto-cpufreq config. Dont poop your pants if you get an error, this only renames existing configs' 20 50
-mv /etc/auto-cpufreq.conf /etc/auto-cpufreq.conf.old
+dialog --msgbox 'Renaming old auto-cpufreq config. This may return an error if there are no previous configurations.' 20 50
+sudo mv /etc/auto-cpufreq.conf /etc/auto-cpufreq.conf.old
 sleep 1s
-mv configs/auto-cpufreq.conf /etc/auto-cpufreq.conf
+sudo mv configs/auto-cpufreq.conf /etc/auto-cpufreq.conf
 sleep 4s
 clear
 dialog --msgbox 'Battery life has been successfully configured!' 20 50
 sleep 1s
 chmod +x uninstall.sh
-dialog --msgbox 'run ./uninstall.sh to revert all changes.' 20 50
+dialog --msgbox 'Run ./uninstall.sh to revert all changes.' 20 50
 sleep 2s
 clear
-echo "A reboot is needed,type 'y' to reboot now and 'n' to reboot later"
+echo "A reboot is needed. Type 'y' to reboot now or 'n' to cancel."
 read YN
 
 if [ $YN = "y" ]
   then
-    reboot
+    sudo reboot now
 fi
 
 done
