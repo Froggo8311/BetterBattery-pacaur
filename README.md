@@ -16,6 +16,9 @@ cd ~/.local/share/BetterBattery-pacaur; ./uninstall.sh
 
 ## Credits
 BetterBattery: https://github.com/BigAnteater/BetterBattery
+
 TLP: https://linrunner.de/tlp/
+
 Auto-cpufreq: https://github.com/AdnanHodzic/auto-cpufreq
+
 TLP configs: https://wiki.archlinux.org/title/TLP
